@@ -37,7 +37,15 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#conference">Conference</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="index.html#conference" id="conferenceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Conference</a>
+                        <ul class="dropdown-menu" aria-labelledby="conferenceDropdown">
+                            <li><a class="dropdown-item" href="schedule.html"><i class="fa-regular fa-calendar me-2"></i>Schedule</a></li>
+                            <li><a class="dropdown-item" href="speakers.html"><i class="fa-solid fa-microphone-lines me-2"></i>Speakers</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="register.html"><i class="fa-solid fa-ticket me-2"></i>Registration</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="index.html#getinvolved">Get Involved</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#team">Team</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
@@ -88,13 +96,13 @@
     <section class="py-5">
         <div class="container py-5">
             <div class="text-center mb-5" data-aos="fade-up">
-                <span class="text-primary fw-bold text-uppercase">Headliners</span>
-                <h2 class="display-5 mt-2">Keynote Speakers</h2>
+                <span class="text-primary fw-bold text-uppercase">Our Lineup</span>
+                <h2 class="display-5 mt-2">Conference <span class="text-gradient">Speakers</span></h2>
             </div>
 
             <div class="row g-4">
                 <!-- Keynote Speaker: Bette Smith -->
-                <div class="col-12" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-12" id="bette-smith" data-aos="fade-up" data-aos-delay="100">
                     <div class="feature-card h-100">
                         <div class="row align-items-center g-4">
                             <div class="col-sm-3 text-center">
@@ -106,8 +114,14 @@
                             <div class="col-sm-9">
                                 <span class="badge bg-primary mb-2">2026 Keynote Speaker</span>
                                 <h3 class="mb-2">Bette Smith</h3>
-                                <span class="text-primary fw-bold d-block mb-3">Director, Center for Innovation and
-                                    Collaboration</span>
+                                <span class="text-primary fw-bold d-block mb-2">Director, Center for Innovation and
+                                    Collaboration, Ball State University</span>
+                                <a href="schedule.html#keynote" class="speaker-session-link text-decoration-none">
+                                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2">
+                                        <i class="fa-regular fa-calendar me-1"></i>Welcome &amp; Opening Keynote
+                                        <i class="fa-solid fa-arrow-right ms-1" style="font-size: 0.7rem;"></i>
+                                    </span>
+                                </a>
                                 <p class="text-muted mb-0" style="line-height: 1.7;">Bette Smith serves as the Director
                                     of the Center for Innovation and Collaboration at Ball State University, where she
                                     leads initiatives that bridge technology, education, and community engagement. With
@@ -123,26 +137,26 @@
                 </div>
             </div>
 
-            <!-- Additional Speakers Section -->
-            <div class="text-center my-5" data-aos="fade-up">
-                <span class="text-primary fw-bold text-uppercase">Featured Voices</span>
-                <h2 class="display-6 mt-2">Additional Speakers</h2>
-            </div>
-
             <div class="row g-4">
                 <!-- Speaker: Sonya Chapin -->
-                <div class="col-12" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-12" id="sonya-chapin" data-aos="fade-up" data-aos-delay="100">
                     <div class="feature-card h-100">
                         <div class="row align-items-center g-4">
                             <div class="col-sm-3 text-center">
                                 <div class="team-avatar mx-auto" style="width: 180px; height: 180px;">
-                                    <img src="images/sonya.jpg" alt="Sonya" class="img-fluid rounded-circle">
+                                    <img src="images/sonya.jpg" alt="Sonya Chapin" class="img-fluid rounded-circle">
                                 </div>
                             </div>
                             <div class="col-sm-9">
                                 <h4 class="mb-2">Sonya Chapin</h4>
-                                <span class="text-primary fw-bold d-block mb-3">Assistant Director of Graduate
-                                    Studies</span>
+                                <span class="text-primary fw-bold d-block mb-2">Assistant Director of Graduate
+                                    Studies, Center for Information and Communication Sciences, Ball State University</span>
+                                <a href="schedule.html#session-mental-health" class="speaker-session-link text-decoration-none">
+                                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2">
+                                        <i class="fa-regular fa-calendar me-1"></i>Panel Discussion: Mental Health, Physical Health, Productivity &amp; Career Progression
+                                        <i class="fa-solid fa-arrow-right ms-1" style="font-size: 0.7rem;"></i>
+                                    </span>
+                                </a>
                                 <p class="text-muted mb-0" style="line-height: 1.8;">Sonya Chapin is a seasoned
                                     technology professional with a passion for building and nurturing tech communities.
                                     With years of experience in revenue generation, process creation and improvements,
@@ -159,18 +173,24 @@
                 </div>
 
                 <!-- Speaker: Krista Ewing -->
-                <div class="col-12" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-12" id="krista-ewing" data-aos="fade-up" data-aos-delay="200">
                     <div class="feature-card h-100">
                         <div class="row align-items-center g-4">
                             <div class="col-sm-3 text-center">
                                 <div class="team-avatar mx-auto" style="width: 180px; height: 180px;">
-                                    <img src="images/krista.png" alt="Krista" class="img-fluid rounded-circle">
+                                    <img src="images/krista.png" alt="Krista Ewing" class="img-fluid rounded-circle">
                                 </div>
                             </div>
                             <div class="col-sm-9">
                                 <h4 class="mb-2">Krista Ewing</h4>
-                                <span class="text-primary fw-bold d-block mb-3">AI and Digital Learning Program
+                                <span class="text-primary fw-bold d-block mb-2">AI and Digital Learning Program
                                     Director</span>
+                                <a href="schedule.html#session-ai-tools" class="speaker-session-link text-decoration-none">
+                                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2">
+                                        <i class="fa-regular fa-calendar me-1"></i>How to Successfully Adopt and Implement AI Tools for ROI
+                                        <i class="fa-solid fa-arrow-right ms-1" style="font-size: 0.7rem;"></i>
+                                    </span>
+                                </a>
                                 <p class="text-muted mb-0" style="line-height: 1.8;">Krista Ewing serves as the AI and
                                     Digital Learning Program Director, where she leads innovative initiatives at the
                                     intersection of artificial intelligence and education technology. With extensive
@@ -186,13 +206,94 @@
                     </div>
                 </div>
 
-                <!-- Speaker: Christine Stiles -->
-                <div class="col-12" data-aos="fade-up" data-aos-delay="300">
+                <!-- Speaker: Jeni McIntosh-Elkins -->
+                <div class="col-12" id="jeni-mcintosh-elkins" data-aos="fade-up" data-aos-delay="300">
                     <div class="feature-card h-100">
                         <div class="row align-items-center g-4">
                             <div class="col-sm-3 text-center">
                                 <div class="team-avatar mx-auto" style="width: 180px; height: 180px;">
-                                    <img src="images/christine Stiles.png" alt="Christine"
+                                    <img src="images/JME.png" alt="Jeni McIntosh-Elkins"
+                                        class="img-fluid rounded-circle">
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <h4 class="mb-2">Jeni McIntosh-Elkins</h4>
+                                <span class="text-primary fw-bold d-block mb-2">Ed.D Candidate in Adult and Community Education, Ball State University</span>
+                                <a href="schedule.html#session-mental-health" class="speaker-session-link text-decoration-none">
+                                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2">
+                                        <i class="fa-regular fa-calendar me-1"></i>Panel Discussion: Mental Health, Physical Health, Productivity &amp; Career Progression
+                                        <i class="fa-solid fa-arrow-right ms-1" style="font-size: 0.7rem;"></i>
+                                    </span>
+                                </a>
+                                <p class="text-muted mb-0" style="line-height: 1.8;">Jeni McIntosh-Elkins is a workforce educator, leadership strategist, and doctoral candidate in Adult and Community Education at Ball State University, where her research explores how life transitions shape leadership and learning. She holds a Master of Business Administration from Indiana University Northwest, a Master of Science in Information and Communication Sciences from Ball State University, and an undergraduate degree from Indiana University Northwest.
+    Jeni serves as Director of Programs and Operations for TechIndiana, where she supports workforce initiatives designed to prepare individuals for success in today's technology-driven economy. She is also the CEO and Founder of Fetch Happiness, where she works as a resiliency trainer, coach, consultant, and author, helping individuals and organizations grow through change, challenge, and transition. In addition, she is the Co-Founder of Torn In Half, a long-standing blog and community supporting early widows as they navigate grief, identity, and the process of rebuilding their lives.
+    Working at the intersection of education, technology, and workforce development, Jeni helps people build the confidence, adaptability, and professional skills needed to thrive in evolving workplaces. Drawing from both professional experience and personal resilience, she believes that growth often begins in life's hardest moments and lives by the philosophy: 
+    <br>
+    "When you cannot change the world, make your corner smile."
+
+</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker: Alex Smedley -->
+                <div class="col-12" id="alex-smedley" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card h-100">
+                        <div class="row align-items-center g-4">
+                            <div class="col-sm-3 text-center">
+                                <div class="team-avatar mx-auto" style="width: 180px; height: 180px;">
+                                    <img src="images/alexsmedley.png" alt="Alex Smedley"
+                                        class="img-fluid rounded-circle">
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <h4 class="mb-2">Alex Smedley</h4>
+                                <span class="text-primary fw-bold d-block mb-2">Senior IT Examiner, Indiana Department of Financial Institutions</span>
+                                <a href="schedule.html#session-mental-health" class="speaker-session-link text-decoration-none">
+                                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2">
+                                        <i class="fa-regular fa-calendar me-1"></i>Panel Discussion: Mental Health, Physical Health, Productivity &amp; Career Progression (Moderator)
+                                        <i class="fa-solid fa-arrow-right ms-1" style="font-size: 0.7rem;"></i>
+                                    </span>
+                                </a>
+                                <p class="text-muted mb-0" style="line-height: 1.8;">Alex Smedley is a Senior IT Examiner with Indiana's Department of Financial Institutions. For nearly nine years, Alex has supervised and conducted complex regulatory examinations of banks, credit unions, and financial service providers to ensure information technology and security compliance and to protect Indiana depositors and consumers. Alex is also the Chair of her department's Enrichment Committee, where she focuses on employee engagement and fostering positive relationships across the agency's divisions. Alex is passionate about mental health, leadership, and creating spaces where everyone feels welcome. When not focusing on others, Alex is working on making her life happier, healthier, cozier, and more productive.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker: Zoey Spengler -->
+                <div class="col-12" id="zoey-spengler" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-card h-100">
+                        <div class="row align-items-center g-4">
+                            <div class="col-sm-3 text-center">
+                                <div class="team-avatar mx-auto" style="width: 180px; height: 180px;">
+                                    <img src="images/zoey spengler.png" alt="Zoey Spengler"
+                                        class="img-fluid rounded-circle">
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <h4 class="mb-2">Zoey Spengler</h4>
+                                <span class="text-primary fw-bold d-block mb-2">Global Change and Enablement Senior Manager, Boston Consulting Group</span>
+                                <a href="schedule.html#session-emotional-intelligence" class="speaker-session-link text-decoration-none">
+                                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2">
+                                        <i class="fa-regular fa-calendar me-1"></i>Building and Fostering Emotional Intelligence: Psychological Safety &amp; Belonging
+                                        <i class="fa-solid fa-arrow-right ms-1" style="font-size: 0.7rem;"></i>
+                                    </span>
+                                </a>
+                                <p class="text-muted mb-0" style="line-height: 1.8;">Zoey Spengler is a Global Change and Enablement Senior Manager at Boston Consulting Group (BCG), specializing in global digital transformations with a focus on AI-driven enhancements and people-centered adoption. An AI Blackbelt, she helps organizations translate advanced technologies into sustainable change across diverse, global teams. Zoey has also served as Vice President of Toastmasters for BCG Boston. Outside of BCG, she is a Project Management Teaching Assistant at the Harvard Division of Continuing Education and an active member of the CICS Alumni Council and Ski & Snowboard Club. Zoey is a Fulbright recipient (2016) and a graduate of Ball State University (2015) and CICS (2018).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker: Christine Stiles -->
+                <div class="col-12" id="christine-stiles" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-card h-100">
+                        <div class="row align-items-center g-4">
+                            <div class="col-sm-3 text-center">
+                                <div class="team-avatar mx-auto" style="width: 180px; height: 180px;">
+                                    <img src="images/christine Stiles.png" alt="Christine Stiles"
                                         class="img-fluid rounded-circle">
                                 </div>
                             </div>
@@ -215,71 +316,8 @@
                     </div>
                 </div>
 
-                <!-- Speaker: Alex Smedley -->
-                <div class="col-12" data-aos="fade-up" data-aos-delay="400">
-                    <div class="feature-card h-100">
-                        <div class="row align-items-center g-4">
-                            <div class="col-sm-3 text-center">
-                                <div class="team-avatar mx-auto" style="width: 180px; height: 180px;">
-                                    <img src="images/alexsmedley.png" alt="Alex Smedley"
-                                        class="img-fluid rounded-circle">
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <h4 class="mb-2">Alex Smedley</h4>
-                                <span class="text-primary fw-bold d-block mb-3">Senior IT Examiner, Indiana Department of Financial Institutions</span>
-                                <p class="text-muted mb-0" style="line-height: 1.8;">Alex Smedley is a Senior IT Examiner with Indiana's Department of Financial Institutions. For nearly nine years, Alex has supervised and conducted complex regulatory examinations of banks, credit unions, and financial service providers to ensure information technology and security compliance and to protect Indiana depositors and consumers. Alex is also the Chair of her department's Enrichment Committee, where she focuses on employee engagement and fostering positive relationships across the agency's divisions. Alex is passionate about mental health, leadership, and creating spaces where everyone feels welcome. When not focusing on others, Alex is working on making her life happier, healthier, cozier, and more productive.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Speaker: Zoey Spengler -->
-                <div class="col-12" data-aos="fade-up" data-aos-delay="500">
-                    <div class="feature-card h-100">
-                        <div class="row align-items-center g-4">
-                            <div class="col-sm-3 text-center">
-                                <div class="team-avatar mx-auto" style="width: 180px; height: 180px;">
-                                    <img src="images/zoey spengler.png" alt="Zoey Spengler"
-                                        class="img-fluid rounded-circle">
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <h4 class="mb-2">Zoey Spengler</h4>
-                                <span class="text-primary fw-bold d-block mb-3">Global Change and Enablement Senior Manager, Boston Consulting Group</span>
-                                <p class="text-muted mb-0" style="line-height: 1.8;">Zoey Spengler is a Global Change and Enablement Senior Manager at Boston Consulting Group (BCG), specializing in global digital transformations with a focus on AI-driven enhancements and people-centered adoption. An AI Blackbelt, she helps organizations translate advanced technologies into sustainable change across diverse, global teams. Zoey has also served as Vice President of Toastmasters for BCG Boston. Outside of BCG, she is a Project Management Teaching Assistant at the Harvard Division of Continuing Education and an active member of the CICS Alumni Council and Ski & Snowboard Club. Zoey is a Fulbright recipient (2016) and a graduate of Ball State University (2015) and CICS (2018).</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Speaker: Jeni McIntosh-Elkins -->
-                <div class="col-12" data-aos="fade-up" data-aos-delay="600">
-                    <div class="feature-card h-100">
-                        <div class="row align-items-center g-4">
-                            <div class="col-sm-3 text-center">
-                                <div class="team-avatar mx-auto" style="width: 180px; height: 180px;">
-                                    <img src="images/JME.png" alt="Jeni McIntosh-Elkins"
-                                        class="img-fluid rounded-circle">
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <h4 class="mb-2">Jeni McIntosh-Elkins</h4>
-                                <span class="text-primary fw-bold d-block mb-3">Ed.D Candidate in Adult and Community Education, Ball State University</span>
-                                <p class="text-muted mb-0" style="line-height: 1.8;">Jeni McIntosh-Elkins is a workforce educator, leadership strategist, and doctoral candidate in Adult and Community Education at Ball State University, where her research explores how life transitions shape leadership and learning. She holds a Master of Business Administration from Indiana University Northwest, a Master of Science in Information and Communication Sciences from Ball State University, and an undergraduate degree from Indiana University Northwest.
-    Jeni serves as Director of Programs and Operations for TechIndiana, where she supports workforce initiatives designed to prepare individuals for success in today’s technology-driven economy. She is also the CEO and Founder of Fetch Happiness, where she works as a resiliency trainer, coach, consultant, and author, helping individuals and organizations grow through change, challenge, and transition. In addition, she is the Co-Founder of Torn In Half, a long-standing blog and community supporting early widows as they navigate grief, identity, and the process of rebuilding their lives.
-    Working at the intersection of education, technology, and workforce development, Jeni helps people build the confidence, adaptability, and professional skills needed to thrive in evolving workplaces. Drawing from both professional experience and personal resilience, she believes that growth often begins in life’s hardest moments and lives by the philosophy: 
-    <br>
-    “When you cannot change the world, make your corner smile.”
-
-</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Speaker: Riyaz Usman -->
-                <div class="col-12" data-aos="fade-up" data-aos-delay="700">
+                <div class="col-12" id="riyaz-usman" data-aos="fade-up" data-aos-delay="700">
                     <div class="feature-card h-100">
                         <div class="row align-items-center g-4">
                             <div class="col-sm-3 text-center">
@@ -356,7 +394,7 @@
             </div>
             <div
                 class="border-top border-secondary border-opacity-25 mt-5 pt-4 d-flex flex-wrap justify-content-between align-items-center">
-                <small class="text-secondary">© 2026 Welcome to Working in Technology. All rights reserved.</small>
+                <small class="text-secondary">Â© 2026 Welcome to Working in Technology. All rights reserved.</small>
                 <div class="d-flex gap-3">
                     <a href="#" class="text-secondary small">Privacy Policy</a>
                     <a href="#" class="text-secondary small">Terms of Service</a>
