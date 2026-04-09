@@ -54,6 +54,10 @@ h6 {
 /* ----------------------------------------------------
    CUSTOM UTILITIES & HELPERS
 ------------------------------------------------------- */
+.bg-accent { background-color: var(--accent) !important; }
+.text-accent { color: var(--accent) !important; }
+.bg-accent-light { background-color: var(--accent-light) !important; }
+
 /* Text Gradients */
 .text-gradient {
   background: linear-gradient(135deg, var(--primary) 0%, #2563eb 100%);
@@ -3840,5 +3844,65 @@ footer a:hover {
   .student-grid-desktop,
   .student-carousel-container {
     display: none !important;
+  }
+}
+
+/* ----------------------------------------------------
+   KNOW BEFORE YOU GO MODAL & CAROUSEL
+------------------------------------------------------- */
+#knowBeforeYouGoModal .modal-content {
+  min-height: 450px;
+  max-height: 85vh;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.kbyg-slide {
+  height: 100%;
+  background-color: #f8fafc;
+  /* Very crisp and visible diagonal tech-stripe pattern */
+  background-image: repeating-linear-gradient(45deg, rgba(24, 183, 173, 0.05) 0, rgba(24, 183, 173, 0.05) 2px, transparent 2px, transparent 15px);
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.kbyg-content {
+  z-index: 1;
+}
+.kbyg-indicators {
+  bottom: 0px;
+}
+.kbyg-indicators button {
+  width: 25px !important;
+  height: 6px !important;
+  border-radius: 6px !important;
+  background-color: var(--primary) !important;
+  opacity: 0.2 !important;
+  border: none !important;
+  margin: 0 4px !important;
+}
+.kbyg-indicators button.active {
+  opacity: 1 !important;
+  background-color: var(--primary-dark) !important;
+  width: 35px !important;
+}
+.kbyg-control {
+  width: 8%;
+}
+.kbyg-schedule-list::-webkit-scrollbar {
+  width: 6px;
+}
+.kbyg-schedule-list::-webkit-scrollbar-thumb {
+  background: rgba(24, 183, 173, 0.3);
+  border-radius: 4px;
+}
+.kbyg-schedule-list::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.02);
+}
+@media (max-width: 768px) {
+  .kbyg-slide {
+    height: 600px; 
   }
 }
