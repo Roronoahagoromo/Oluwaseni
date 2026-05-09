@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en" data-new-gallery>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Welcome to Working in Technology</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="shortcut icon" type="image/png" href="images/logo.png">
+  <link rel="apple-touch-icon" href="images/logo.png">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Lightbox -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/lightbox.min.css">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    /* Auto-Play Carousel Section */
+    .auto-carousel-section {
+      background: linear-gradient(135deg, rgba(30, 60, 114, 0.85) 0%, rgba(42, 82, 152, 0.85) 100%);
+      background-attachment: fixed;
+      padding: 60px 0;
+      margin: 0;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .auto-carousel-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('images/WWiT 26\' Photos/IMG_5130.JPG') center/cover;
+      background-attachment: fixed;
+      filter: blur(12px);
+      opacity: 0.3;
+      z-index: 0;
+    }
+
+    .auto-carousel-container {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .carousel-title {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+      font-size: 2rem;
+      font-weight: 900;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .carousel-image {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+      display: block;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .carousel-indicator {
+      text-align: center;
+      margin-top: 25px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .carousel-dot-container {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-dot.active {
+      background: white;
+      width: 30px;
+      border-radius: 4px;
+    }
+
+    .gallery-container {
+      padding: 80px 0;
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .gallery-header h2 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 15px;
+      color: #1e3c72;
+    }
+
+    .gallery-header p {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 25px;
+      margin-bottom: 60px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      aspect-ratio: 4/3;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(30, 60, 114, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay i {
+      color: white;
+      font-size: 2.5rem;
+    }
+
+    /* Custom Lightbox Styles */
+    #customLightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 0;
+    }
+
+    .lightbox-container {
+      position: relative;
+      z-index: 1;
+      width: 90%;
+      max-width: 1000px;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    #lightboxImage {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(1.1);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .lightbox-prev {
+      left: 30px;
+    }
+
+    .lightbox-next {
+      right: 30px;
+    }
+
+    .lightbox-info {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #lightboxCounter {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .lightbox-hint {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    @media (max-width: 768px) {
+      .lightbox-container {
+        width: 95%;
+        height: 70vh;
+      }
+
+      .lightbox-close {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        top: 20px;
+        right: 20px;
+      }
+
+      .lightbox-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+
+      .lightbox-prev {
+        left: 15px;
+      }
+
+      .lightbox-next {
+        right: 15px;
+      }
+
+      .lightbox-info {
+        bottom: 20px;
+      }
+    }
+
+    /* Stats Section */
+    .stats-section {
+      background: #f8f9fa;
+      padding: 40px 0;
+      border-top: 1px solid #e9ecef;
+    }
+
+    .stat-box {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #2a5298;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      color: #666;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+      }
+
+      .gallery-header h2 {
+        font-size: 1.8rem;
+      }
+
+      .carousel-image {
+        height: 350px;
+      }
+
+      .carousel-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/logo.png" alt="WIT Logo">
+        <span class="d-none d-sm-inline-block fw-bold text-dark">Welcome to Working in Technology</span>
+        <span class="d-sm-none fw-bold text-dark">WWiT</span>
+      </a>
+      <button class="navbar-toggler collapsed border-0 shadow-none" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#conference" id="conferenceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Conference</a>
+            <ul class="dropdown-menu" aria-labelledby="conferenceDropdown">
+              <li><a class="dropdown-item" href="schedule.html"><i class="fa-regular fa-calendar me-2"></i>Schedule</a></li>
+              <li><a class="dropdown-item" href="speakers.html"><i class="fa-solid fa-microphone-lines me-2"></i>Speakers</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="register.html"><i class="fa-solid fa-ticket me-2"></i>Registration</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link active" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#getinvolved">Get Involved</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="d-flex ms-lg-3">
+          <a href="register.html" class="btn btn-primary text-white">Register Now</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Gallery Header -->
+  <section class="gallery-title" style="display: none;"></section>
+
+  <!-- Auto-Play Carousel Section -->
+  <section class="auto-carousel-section" style="margin-top: 70px;">
+    <div class="container auto-carousel-container">
+      <h2 class="carousel-title">Featured Moments</h2>
+      <div class="carousel-wrapper">
+        <img id="carouselImage" src="images/WWiT 26' Photos/IMG_5110.JPG" alt="Gallery Image" class="carousel-image">
+        <div class="carousel-indicator">
+          <span id="currentIndex">1</span> / <span id="totalImages">0</span>
+        </div>
+        <div class="carousel-dot-container" id="dotContainer"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery-container">
+    <div class="container">
+      <div class="gallery-header">
+        <h2>All Photos</h2>
+        <p>Explore our complete collection of moments from the conference</p>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <!-- Custom Lightbox Modal -->
+  <div id="customLightbox" class="custom-lightbox" style="display: none;">
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-container">
+      <button id="lightboxClose" class="lightbox-close" title="Close" aria-label="Close image">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <button id="lightboxPrev" class="lightbox-nav lightbox-prev" title="Previous image" aria-label="Previous image">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      
+      <div class="lightbox-content">
+        <img id="lightboxImage" src="" alt="Conference photo" />
+      </div>
+      
+      <button id="lightboxNext" class="lightbox-nav lightbox-next" title="Next image" aria-label="Next image">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+      
+      <div class="lightbox-info">
+        <span id="lightboxCounter"></span>
+        <span class="lightbox-hint">Swipe or use arrow keys to navigate</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="stat-box">
+            <span class="stat-number">102</span>
+            <span class="stat-label">Photos Captured</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-box">
+            <span class="stat-number">1</span>
+            <span class="stat-label">Amazing Day</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-box">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Memories</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="d-flex align-items-center gap-2 mb-3 text-white fw-bold fs-5">
+            <span>Welcome to Working in Technology</span>
+          </div>
+          <p class="text-secondary small mb-4">
+            Connecting, educating, and inspiring tech professionals since 2008.
+            Join our community and shape the future of technology.
+          </p>
+          <div>
+            <a href="#" class="footer-social-icon" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="footer-social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="footer-social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="footer-social-icon" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-6">
+          <h5>Conference</h5>
+          <a href="index.html#conference">2026 Conference</a>
+          <a href="schedule.html">Schedule</a>
+          <a href="speakers.html">Speakers</a>
+          <a href="opportunities.html">Sponsorship</a>
+        </div>
+        <div class="col-lg-2 col-6">
+          <h5>Get Involved</h5>
+          <a href="opportunities.html">Professionals</a>
+          <a href="student-sponsorship.html">Students</a>
+          <a href="join-team.html">Volunteers</a>
+          <a href="partnerships.html">Partnerships</a>
+        </div>
+        <div class="col-lg-3 col-6">
+          <h5>Resources</h5>
+          <a href="#">Past Conference</a>
+          <a href="faq.html">FAQ</a>
+        </div>
+      </div>
+      <div
+        class="border-top border-secondary border-opacity-25 mt-5 pt-4 d-flex flex-wrap justify-content-between align-items-center">
+        <small class="text-secondary">© 2026 Welcome to Working in Technology. All rights reserved.</small>
+        <div class="d-flex gap-3">
+          <a href="#" class="text-secondary small">Privacy Policy</a>
+          <a href="#" class="text-secondary small">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- Lightbox JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/lightbox.min.js"></script>
+
+  <script>
+    // Image array
+    const images = [
+      'IMG_5110.JPG',
+      'IMG_5111.JPG',
+      'IMG_5112.JPG',
+      'IMG_5113.JPG',
+      'IMG_5114.JPG',
+      'IMG_5115.JPG',
+      'IMG_5116.JPG',
+      'IMG_5118.JPG',
+      'IMG_5119.JPG',
+      'IMG_5120.JPG',
+      'IMG_5121.JPG',
+      'IMG_5122.JPG',
+      'IMG_5123.JPG',
+      'IMG_5124.JPG',
+      'IMG_5125.JPG',
+      'IMG_5126.JPG',
+      'IMG_5127.JPG',
+      'IMG_5128.JPG',
+      'IMG_5129.JPG',
+      'IMG_5130.JPG',
+      'IMG_5131.JPG',
+      'IMG_5132.JPG',
+      'IMG_5133.JPG',
+      'IMG_5134.JPG',
+      'IMG_5135.JPG',
+      'IMG_5136.JPG',
+      'IMG_5137.JPG',
+      'IMG_5138.JPG',
+      'IMG_5139.JPG',
+      'IMG_5140.JPG',
+      'IMG_5141.JPG',
+      'IMG_5142.JPG',
+      'IMG_5143.JPG',
+      'IMG_5144.JPG',
+      'IMG_5145.JPG',
+      'IMG_5146.JPG',
+      'IMG_5147.JPG',
+      'IMG_5148.JPG',
+      'IMG_5149.JPG',
+      'IMG_5150.JPG',
+      'IMG_5151.JPG',
+      'IMG_5152.JPG',
+      'IMG_5153.JPG',
+      'IMG_5154.JPG',
+      'IMG_5155.JPG',
+      'IMG_5159.JPG',
+      'IMG_5160.JPG',
+      'IMG_5161.JPG',
+      'IMG_5162.JPG',
+      'IMG_5163.JPG',
+      'IMG_5164.JPG',
+      'IMG_5165.JPG',
+      'IMG_5166.JPG',
+      'IMG_5167.JPG',
+      'IMG_5168.JPG',
+      'IMG_5171.JPG',
+      'IMG_5172.JPG',
+      'IMG_5174.JPG',
+      'IMG_5175.JPG',
+      'IMG_5176.JPG',
+      'IMG_5177.JPG',
+      'IMG_5178.JPG',
+      'IMG_5179.JPG',
+      'IMG_5180.JPG',
+      'IMG_5181.JPG',
+      'IMG_5182.JPG',
+      'IMG_5183.JPG',
+      'IMG_5185.JPG',
+      'IMG_5186.JPG',
+      'IMG_5187.JPG',
+      'IMG_5188.JPG',
+      'IMG_5189.JPG',
+      'IMG_5190.JPG',
+      'IMG_5191.JPG',
+      'IMG_5192.JPG',
+      'IMG_5193.JPG',
+      'IMG_5194.JPG',
+      'IMG_5196.JPG',
+      'IMG_5197.JPG',
+      'IMG_5198.JPG',
+      'IMG_5199.JPG',
+      'IMG_5200.JPG',
+      'IMG_5201.JPG',
+      'IMG_5202.JPG',
+      'IMG_5203.JPG',
+      'IMG_5204.JPG',
+      'IMG_5205.JPG',
+      'IMG_5206.JPG',
+      'IMG_5207.JPG',
+      'IMG_5208.JPG',
+      'IMG_5209.JPG',
+      'IMG_5210.JPG',
+      'IMG_5211.JPG',
+      'IMG_5212.JPG',
+      'IMG_5213.JPG',
+      'IMG_5214.JPG',
+      'IMG_5215.JPG',
+      'IMG_5216.JPG',
+      'IMG_5217.JPG',
+      'IMG_5218.JPG',
+      'IMG_5219.JPG',
+      'IMG_5220.JPG'
+    ];
+
+    let currentCarouselIndex = 0;
+    let carouselInterval;
+
+    // Initialize carousel
+    function initCarousel() {
+      document.getElementById('totalImages').textContent = images.length;
+      updateCarouselImage();
+      createDots();
+      startAutoPlay();
+    }
+
+    function updateCarouselImage() {
+      const imagePath = 'images/WWiT 26\' Photos/' + images[currentCarouselIndex];
+      document.getElementById('carouselImage').src = imagePath;
+      document.getElementById('currentIndex').textContent = currentCarouselIndex + 1;
+      updateDots();
+    }
+
+    function nextImage() {
+      currentCarouselIndex = (currentCarouselIndex + 1) % images.length;
+      updateCarouselImage();
+      resetAutoPlay();
+    }
+
+    function goToImage(index) {
+      currentCarouselIndex = index;
+      updateCarouselImage();
+      resetAutoPlay();
+    }
+
+    function createDots() {
+      const dotContainer = document.getElementById('dotContainer');
+      images.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'carousel-dot';
+        if (index === 0) dot.classList.add('active');
+        dot.onclick = () => goToImage(index);
+        dotContainer.appendChild(dot);
+      });
+    }
+
+    function updateDots() {
+      const dots = document.querySelectorAll('.carousel-dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentCarouselIndex);
+      });
+    }
+
+    function startAutoPlay() {
+      carouselInterval = setInterval(() => {
+        currentCarouselIndex = (currentCarouselIndex + 1) % images.length;
+        updateCarouselImage();
+      }, 5000); // Change image every 5 seconds
+    }
+
+    function resetAutoPlay() {
+      clearInterval(carouselInterval);
+      startAutoPlay();
+    }
+
+    // Initialize gallery grid
+    function initGallery() {
+      const galleryGrid = document.getElementById('galleryGrid');
+      
+      images.forEach((image, index) => {
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'gallery-item';
+        item.setAttribute('data-image-index', index);
+        item.setAttribute('aria-label', `Open photo ${index + 1}`);
+        item.innerHTML = `
+          <img src="images/WWiT 26' Photos/${image}" alt="Conference photo ${index + 1}">
+          <div class="gallery-overlay">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+          </div>
+        `;
+        item.addEventListener('click', () => openLightbox(index));
+        galleryGrid.appendChild(item);
+      });
+    }
+
+    // Custom Lightbox Functions
+    let currentLightboxIndex = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function openLightbox(index) {
+      currentLightboxIndex = index;
+      updateLightbox();
+      document.getElementById('customLightbox').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      
+      // Add keyboard and touch listeners
+      document.addEventListener('keydown', handleLightboxKeys);
+      document.addEventListener('touchstart', handleLightboxTouchStart, false);
+      document.addEventListener('touchend', handleLightboxTouchEnd, false);
+    }
+
+    function closeLightbox() {
+      document.getElementById('customLightbox').style.display = 'none';
+      document.body.style.overflow = 'auto';
+      
+      // Remove listeners
+      document.removeEventListener('keydown', handleLightboxKeys);
+      document.removeEventListener('touchstart', handleLightboxTouchStart);
+      document.removeEventListener('touchend', handleLightboxTouchEnd);
+    }
+
+    function updateLightbox() {
+      const imageName = images[currentLightboxIndex];
+      const imagePath = `images/WWiT 26' Photos/${imageName}`;
+      document.getElementById('lightboxImage').src = imagePath;
+      document.getElementById('lightboxCounter').textContent = `${currentLightboxIndex + 1} / ${images.length}`;
+    }
+
+    function showNextImage() {
+      currentLightboxIndex = (currentLightboxIndex + 1) % images.length;
+      updateLightbox();
+    }
+
+    function showPrevImage() {
+      currentLightboxIndex = (currentLightboxIndex - 1 + images.length) % images.length;
+      updateLightbox();
+    }
+
+    function handleLightboxKeys(e) {
+      if (document.getElementById('customLightbox').style.display === 'none') return;
+      
+      if (e.key === 'ArrowRight') {
+        showNextImage();
+      } else if (e.key === 'ArrowLeft') {
+        showPrevImage();
+      } else if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    }
+
+    function handleLightboxTouchStart(e) {
+      if (document.getElementById('customLightbox').style.display === 'none') return;
+      touchStartX = e.changedTouches[0].screenX;
+    }
+
+    function handleLightboxTouchEnd(e) {
+      if (document.getElementById('customLightbox').style.display === 'none') return;
+      touchEndX = e.changedTouches[0].screenX;
+      
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Swipe left - next image
+          showNextImage();
+        } else {
+          // Swipe right - previous image
+          showPrevImage();
+        }
+      }
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      initCarousel();
+      initGallery();
+      AOS.init();
+
+      // Setup lightbox button listeners
+      document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+      document.getElementById('lightboxNext').addEventListener('click', showNextImage);
+      document.getElementById('lightboxPrev').addEventListener('click', showPrevImage);
+      
+      // Close lightbox when clicking on backdrop
+      document.querySelector('.lightbox-backdrop').addEventListener('click', closeLightbox);
+    });
+  </script>
+
+</body>
+
+</html>
