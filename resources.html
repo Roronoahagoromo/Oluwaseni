@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaker Presentations &amp; Resources - Working in Technology</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="shortcut icon" type="image/png" href="images/logo.png">
+    <link rel="apple-touch-icon" href="images/logo.png">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .resource-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: rgba(30, 60, 114, 0.15);
+        }
+
+        .resource-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .icon-pptx {
+            background: rgba(210, 71, 38, 0.1);
+            color: #d24726;
+        }
+
+        .icon-pdf {
+            background: rgba(226, 54, 54, 0.1);
+            color: #e23636;
+        }
+
+        .resource-meta {
+            font-size: 0.85rem;
+            color: #888;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .resource-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .page-header-bg {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 120px 0 80px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header-bg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at right bottom, rgba(255,255,255,0.1) 0%, transparent 60%);
+        }
+
+        /* Updated View-Only Platform Button Styles */
+        .btn-view-platform {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white !important;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            padding: 12px 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30, 60, 114, 0.2);
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .btn-view-platform:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.35);
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+        }
+
+        /* Custom Platform Viewer Modal Overlay */
+        .custom-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 15, 30, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: modalFadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .custom-modal-container {
+            width: 100%;
+            max-width: 1100px;
+            height: calc(100vh - 80px);
+            background: #0f172a;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .custom-modal-header {
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-badge {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .modal-close-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            background: #ef4444;
+            transform: scale(1.1);
+        }
+
+        .custom-modal-body {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #090d16;
+            user-select: none;
+        }
+
+        .custom-modal-footer {
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .slide-control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-control-btn:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .slide-control-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .slide-image-display {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: slideTransition 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideTransition {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .custom-modal-container {
+                height: calc(100vh - 40px);
+            }
+            .slide-control-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top scrolled" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="images/logo.png" alt="WIT Logo">
+                <span class="d-none d-sm-inline-block fw-bold text-dark">Welcome to Working in Technology</span>
+                <span class="d-sm-none fw-bold text-dark">WWiT</span>
+            </a>
+            <button class="navbar-toggler collapsed border-0 shadow-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="index.html#conference" id="conferenceDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">Conference</a>
+                        <ul class="dropdown-menu" aria-labelledby="conferenceDropdown">
+                            <li><a class="dropdown-item" href="schedule.html"><i class="fa-regular fa-calendar me-2"></i>Schedule</a></li>
+                            <li><a class="dropdown-item" href="speakers.html"><i class="fa-solid fa-microphone-lines me-2"></i>Speakers</a></li>
+                            <li><a class="dropdown-item active" href="resources.html"><i class="fa-solid fa-file-powerpoint me-2"></i>Resources</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="register.html"><i class="fa-solid fa-ticket me-2"></i>Registration</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#getinvolved">Get Involved</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#team">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+                </ul>
+                <div class="d-flex ms-lg-3">
+                    <a href="register.html" class="btn btn-primary text-white">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header-bg text-center">
+        <div class="container position-relative z-index-2">
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);">
+                <i class="fa-solid fa-desktop text-warning"></i>
+                <span class="small fw-bold text-white uppercase letter-spacing-2">View-Only Secure Platform</span>
+            </div>
+            <h1 class="display-4 fw-black mb-3">Speaker <span style="color: #ffd700;">Presentations</span></h1>
+            <p class="lead opacity-85 mx-auto mb-2" style="max-width: 700px;">
+                Review official slide decks, keynote documents, and workshop materials directly inside our secure in-platform presentation viewer.
+            </p>
+            <span class="badge bg-warning text-dark fw-bold px-3 py-1 rounded-pill small">
+                <i class="fa-solid fa-shield-halved me-1"></i> File downloads are disabled. Presentation content is View-Only.
+            </span>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row g-4 justify-content-center">
+
+                <!-- Resource 1: Bette Smith Keynote -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="resource-card h-100 p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="resource-icon-wrapper icon-pdf">
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                </div>
+                                <span class="badge bg-primary bg-opacity-10 text-primary fw-bold px-3 py-1 rounded-pill">Keynote Deck</span>
+                            </div>
+                            <h4 class="fw-bold mb-2">Welcome &amp; Opening Keynote (2026)</h4>
+                            <p class="text-primary fw-bold small mb-3">Bette Smith</p>
+                            <div class="resource-meta flex-wrap">
+                                <span><i class="fa-solid fa-file-lines"></i> PDF Document</span>
+                                <span class="text-danger fw-bold"><i class="fa-solid fa-lock"></i> Platform View-Only</span>
+                            </div>
+                            <p class="text-muted small mb-4" style="line-height: 1.6;">
+                                The official read-only presentation slide deck from Bette Smith's highly anticipated welcome and opening keynote address. Packed with foundational frameworks and strategic insights for navigating today's technological transformations.
+                            </p>
+                        </div>
+                        <div>
+                            <button onclick="openPresentationViewer('keynote')" class="btn-view-platform shadow-sm">
+                                <i class="fa-solid fa-desktop"></i> View on Platform
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resource 2: Nathan Hiscock Presentation -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="resource-card h-100 p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="resource-icon-wrapper icon-pptx">
+                                    <i class="fa-solid fa-file-powerpoint"></i>
+                                </div>
+                                <span class="badge bg-info bg-opacity-10 text-info fw-bold px-3 py-1 rounded-pill">Breakout Track</span>
+                            </div>
+                            <h4 class="fw-bold mb-2">Governing AI Ethically and Profitably</h4>
+                            <p class="text-primary fw-bold small mb-3">Nathan Hiscock</p>
+                            <div class="resource-meta flex-wrap">
+                                <span><i class="fa-solid fa-file-lines"></i> Interactive Slides</span>
+                                <span class="text-danger fw-bold"><i class="fa-solid fa-lock"></i> Platform View-Only</span>
+                            </div>
+                            <p class="text-muted small mb-4" style="line-height: 1.6;">
+                                Complete read-only slide presentation accompanying Nathan's expert morning track session. Details comprehensive solution architectures, organizational guardrails, and practical steps for moving from basic AI assistants to complex, autonomous agents securely.
+                            </p>
+                        </div>
+                        <div>
+                            <button onclick="openPresentationViewer('nathan')" class="btn-view-platform shadow-sm">
+                                <i class="fa-solid fa-desktop"></i> View on Platform
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resource 3: Confidence Didn't Come First -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="resource-card h-100 p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="resource-icon-wrapper icon-pptx">
+                                    <i class="fa-solid fa-file-powerpoint"></i>
+                                </div>
+                                <span class="badge bg-success bg-opacity-10 text-success fw-bold px-3 py-1 rounded-pill">Workshop Deck</span>
+                            </div>
+                            <h4 class="fw-bold mb-2">Confidence Didn't Come First &mdash; Action Did!</h4>
+                            <p class="text-primary fw-bold small mb-3">Conference Workshop</p>
+                            <div class="resource-meta flex-wrap">
+                                <span><i class="fa-solid fa-file-lines"></i> Interactive Slides</span>
+                                <span class="text-danger fw-bold"><i class="fa-solid fa-lock"></i> Platform View-Only</span>
+                            </div>
+                            <p class="text-muted small mb-4" style="line-height: 1.6;">
+                                An inspiring, platform-hosted guide to building professional resilience, conquering imposter syndrome, and accelerating leadership skills through direct action. Features beautifully designed graphics, core takeaways, and empowering insights.
+                            </p>
+                        </div>
+                        <div>
+                            <button onclick="openPresentationViewer('confidence')" class="btn-view-platform shadow-sm">
+                                <i class="fa-solid fa-desktop"></i> View on Platform
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Presentation Viewer Modal Overlay -->
+    <div id="presentationModal" class="custom-modal-overlay" style="display: none;">
+        <div class="custom-modal-container">
+            <div class="custom-modal-header">
+                <div class="d-flex align-items-center gap-3">
+                    <span class="modal-badge"><i class="fa-solid fa-shield-halved me-1"></i> Platform View-Only</span>
+                    <h5 id="modalPresentationTitle" class="mb-0 text-white fw-bold">Presentation Viewer</h5>
+                </div>
+                <button id="closeViewerBtn" class="modal-close-btn" aria-label="Close viewer" title="Close viewer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="modalContentArea" class="custom-modal-body" oncontextmenu="return false;">
+                <!-- Dynamically injected iframe or image slide display -->
+            </div>
+            <div id="modalFooterControls" class="custom-modal-footer" style="display: none;">
+                <button id="prevSlideBtn" class="slide-control-btn"><i class="fa-solid fa-chevron-left me-2"></i> Previous Slide</button>
+                <span id="slideCounterDisplay" class="slide-counter text-white fw-bold">Slide 1 of 2</span>
+                <button id="nextSlideBtn" class="slide-control-btn">Next Slide <i class="fa-solid fa-chevron-right ms-2"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Info CTA -->
+    <section class="py-5 bg-white border-top">
+        <div class="container py-4 text-center">
+            <div class="max-w-xl mx-auto" style="max-width: 650px; margin: 0 auto;">
+                <div class="mb-3">
+                    <i class="fa-solid fa-circle-info text-primary fs-2"></i>
+                </div>
+                <h3 class="fw-bold mb-3">Viewing Experiences &amp; Accessibility</h3>
+                <p class="text-muted mb-4">
+                    To maintain strict document security and intellectual property protection, all presentation downloads have been restricted. You can fully explore multi-page slide decks and read-only PDFs natively inside our premium in-browser viewer.
+                </p>
+                <a href="index.html#contact" class="btn btn-outline-primary fw-bold px-4 py-2 rounded-pill">Contact Support Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center gap-2 mb-3 text-white fw-bold fs-5">
+                        <img src="images/logo.png" alt="WWiT Logo" style="height: 50px; border-radius: 8px;">
+                        <span>Welcome to Working in Technology</span>
+                    </div>
+                    <p class="text-secondary small mb-4">
+                        Connecting, educating, and inspiring tech professionals since 2008.
+                        Join our community and shape the future of technology.
+                    </p>
+                    <div>
+                        <a href="#" class="footer-social-icon" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="footer-social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="footer-social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="footer-social-icon" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5>Conference</h5>
+                    <a href="index.html#conference">2026 Conference</a>
+                    <a href="schedule.html">Schedule</a>
+                    <a href="speakers.html">Speakers</a>
+                    <a href="resources.html">Resources</a>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5>Get Involved</h5>
+                    <a href="opportunities.html">Professionals</a>
+                    <a href="student-sponsorship.html">Students</a>
+                    <a href="join-team.html">Volunteers</a>
+                    <a href="partnerships.html">Partnerships</a>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <h5>Resources</h5>
+                    <a href="resources.html">Speaker Presentations</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
+            <div class="border-top border-secondary border-opacity-25 mt-5 pt-4 d-flex flex-wrap justify-content-between align-items-center">
+                <small class="text-secondary">&copy; 2026 Welcome to Working in Technology. All rights reserved.</small>
+                <div class="d-flex gap-3">
+                    <a href="#" class="text-secondary small">Privacy Policy</a>
+                    <a href="#" class="text-secondary small">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({ once: true, duration: 800 });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('mainNav');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+        });
+
+        // Presentation Platform Viewer Interactive Engine
+        const presentationData = {
+            'keynote': {
+                title: 'Welcome & Opening Keynote (2026)',
+                type: 'pdf',
+                src: 'WWiT Speaker Presentations/WWiT Keynote_2026  -  Read-Only.pdf'
+            },
+            'nathan': {
+                title: 'Governing AI Ethically and Profitably',
+                type: 'slides',
+                images: [
+                    'images/nathan_slide_one.png',
+                    'images/nathan_slide_two.png'
+                ]
+            },
+            'confidence': {
+                title: 'Confidence Didn\'t Come First — Action Did!',
+                type: 'slides',
+                images: [
+                    'images/confidence_slide_one.png',
+                    'images/confidence_slide_two.png'
+                ]
+            }
+        };
+
+        let currentActiveDeck = null;
+        let currentSlideIndex = 0;
+
+        function openPresentationViewer(id) {
+            const data = presentationData[id];
+            if (!data) return;
+
+            const modal = document.getElementById('presentationModal');
+            const titleEl = document.getElementById('modalPresentationTitle');
+            const contentArea = document.getElementById('modalContentArea');
+            const footerControls = document.getElementById('modalFooterControls');
+
+            titleEl.textContent = data.title;
+            contentArea.innerHTML = ''; // Clear prior content
+
+            if (data.type === 'pdf') {
+                footerControls.style.display = 'none';
+                // Inline iframe with #toolbar=0 disables browser download headers
+                const iframe = document.createElement('iframe');
+                iframe.src = data.src + '#toolbar=0&navpanes=0&scrollbar=0';
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.border = 'none';
+                iframe.setAttribute('title', data.title);
+                contentArea.appendChild(iframe);
+            } else if (data.type === 'slides') {
+                currentActiveDeck = data.images;
+                currentSlideIndex = 0;
+                footerControls.style.display = 'flex';
+
+                const imgEl = document.createElement('img');
+                imgEl.id = 'activeSlideDisplay';
+                imgEl.className = 'slide-image-display';
+                contentArea.appendChild(imgEl);
+
+                updateSlideDisplay();
+            }
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function updateSlideDisplay() {
+            if (!currentActiveDeck) return;
+            const imgEl = document.getElementById('activeSlideDisplay');
+            const counterEl = document.getElementById('slideCounterDisplay');
+            const prevBtn = document.getElementById('prevSlideBtn');
+            const nextBtn = document.getElementById('nextSlideBtn');
+
+            if (imgEl) {
+                imgEl.style.animation = 'none';
+                imgEl.offsetHeight; // force reflow for pure CSS transition reset
+                imgEl.style.animation = null;
+                imgEl.src = currentActiveDeck[currentSlideIndex];
+            }
+
+            counterEl.textContent = `Slide ${currentSlideIndex + 1} of ${currentActiveDeck.length}`;
+            prevBtn.disabled = currentSlideIndex === 0;
+            nextBtn.disabled = currentSlideIndex === currentActiveDeck.length - 1;
+        }
+
+        function closeViewer() {
+            const modal = document.getElementById('presentationModal');
+            if (modal) modal.style.display = 'none';
+            document.body.style.overflow = '';
+            document.getElementById('modalContentArea').innerHTML = '';
+            currentActiveDeck = null;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const closeBtn = document.getElementById('closeViewerBtn');
+            if (closeBtn) closeBtn.addEventListener('click', closeViewer);
+
+            const prevBtn = document.getElementById('prevSlideBtn');
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    if (currentSlideIndex > 0) {
+                        currentSlideIndex--;
+                        updateSlideDisplay();
+                    }
+                });
+            }
+
+            const nextBtn = document.getElementById('nextSlideBtn');
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    if (currentActiveDeck && currentSlideIndex < currentActiveDeck.length - 1) {
+                        currentSlideIndex++;
+                        updateSlideDisplay();
+                    }
+                });
+            }
+
+            const modal = document.getElementById('presentationModal');
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeViewer();
+                    }
+                });
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (modal && modal.style.display === 'flex') {
+                    if (e.key === 'Escape') {
+                        closeViewer();
+                    } else if (e.key === 'ArrowLeft' && currentActiveDeck && currentSlideIndex > 0) {
+                        currentSlideIndex--;
+                        updateSlideDisplay();
+                    } else if (e.key === 'ArrowRight' && currentActiveDeck && currentSlideIndex < currentActiveDeck.length - 1) {
+                        currentSlideIndex++;
+                        updateSlideDisplay();
+                    }
+                }
+            });
+
+            // Scroll to Top Button
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (scrollToTopBtn) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        scrollToTopBtn.classList.add('visible');
+                    } else {
+                        scrollToTopBtn.classList.remove('visible');
+                    }
+                });
+
+                scrollToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    </script>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+</body>
+
+</html>
