@@ -190,63 +190,18 @@
             justify-content: center;
             overflow: hidden;
             background: #090d16;
-            user-select: none;
         }
 
-        .custom-modal-footer {
-            padding: 1rem 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .slide-control-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
+        .viewer-iframe {
+            width: 100%;
+            height: 100%;
             border: none;
-            padding: 8px 20px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-        }
-
-        .slide-control-btn:hover:not(:disabled) {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .slide-control-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-
-        .slide-image-display {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            animation: slideTransition 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes slideTransition {
-            from { opacity: 0; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
+            background: #ffffff;
         }
 
         @media (max-width: 768px) {
             .custom-modal-container {
                 height: calc(100vh - 40px);
-            }
-            .slide-control-btn {
-                padding: 6px 12px;
-                font-size: 0.8rem;
             }
         }
     </style>
@@ -359,7 +314,7 @@
                             <h4 class="fw-bold mb-2">Governing AI Ethically and Profitably</h4>
                             <p class="text-primary fw-bold small mb-3">Nathan Hiscock</p>
                             <div class="resource-meta flex-wrap">
-                                <span><i class="fa-solid fa-file-lines"></i> Interactive Slides</span>
+                                <span><i class="fa-solid fa-file-lines"></i> PowerPoint (.pptx)</span>
                                 <span class="text-danger fw-bold"><i class="fa-solid fa-lock"></i> Platform View-Only</span>
                             </div>
                             <p class="text-muted small mb-4" style="line-height: 1.6;">
@@ -387,7 +342,7 @@
                             <h4 class="fw-bold mb-2">Confidence Didn't Come First &mdash; Action Did!</h4>
                             <p class="text-primary fw-bold small mb-3">Conference Workshop</p>
                             <div class="resource-meta flex-wrap">
-                                <span><i class="fa-solid fa-file-lines"></i> Interactive Slides</span>
+                                <span><i class="fa-solid fa-file-lines"></i> PowerPoint (.pptx)</span>
                                 <span class="text-danger fw-bold"><i class="fa-solid fa-lock"></i> Platform View-Only</span>
                             </div>
                             <p class="text-muted small mb-4" style="line-height: 1.6;">
@@ -411,7 +366,7 @@
         <div class="custom-modal-container">
             <div class="custom-modal-header">
                 <div class="d-flex align-items-center gap-3">
-                    <span class="modal-badge"><i class="fa-solid fa-shield-halved me-1"></i> Platform View-Only</span>
+                    <span class="modal-badge"><i class="fa-solid fa-shield-halved me-1"></i> Platform View-Only Mode</span>
                     <h5 id="modalPresentationTitle" class="mb-0 text-white fw-bold">Presentation Viewer</h5>
                 </div>
                 <button id="closeViewerBtn" class="modal-close-btn" aria-label="Close viewer" title="Close viewer">
@@ -419,12 +374,7 @@
                 </button>
             </div>
             <div id="modalContentArea" class="custom-modal-body" oncontextmenu="return false;">
-                <!-- Dynamically injected iframe or image slide display -->
-            </div>
-            <div id="modalFooterControls" class="custom-modal-footer" style="display: none;">
-                <button id="prevSlideBtn" class="slide-control-btn"><i class="fa-solid fa-chevron-left me-2"></i> Previous Slide</button>
-                <span id="slideCounterDisplay" class="slide-counter text-white fw-bold">Slide 1 of 2</span>
-                <button id="nextSlideBtn" class="slide-control-btn">Next Slide <i class="fa-solid fa-chevron-right ms-2"></i></button>
+                <!-- Dynamically injected secure iframe engine -->
             </div>
         </div>
     </div>
@@ -515,7 +465,7 @@
             }
         });
 
-        // Presentation Platform Viewer Interactive Engine
+        // Presentation Platform Real Viewer Engine via Official Office & PDF Viewers
         const presentationData = {
             'keynote': {
                 title: 'Welcome & Opening Keynote (2026)',
@@ -524,24 +474,15 @@
             },
             'nathan': {
                 title: 'Governing AI Ethically and Profitably',
-                type: 'slides',
-                images: [
-                    'images/nathan_slide_one.png',
-                    'images/nathan_slide_two.png'
-                ]
+                type: 'pptx',
+                src: 'WWiT Speaker Presentations/Working In Technology - Governing AI Ethically and Profitability.pptx'
             },
             'confidence': {
                 title: 'Confidence Didn\'t Come First — Action Did!',
-                type: 'slides',
-                images: [
-                    'images/confidence_slide_one.png',
-                    'images/confidence_slide_two.png'
-                ]
+                type: 'pptx',
+                src: 'WWiT Speaker Presentations/Confidence Didn\'t Come First - Action Did!.pptx'
             }
         };
-
-        let currentActiveDeck = null;
-        let currentSlideIndex = 0;
 
         function openPresentationViewer(id) {
             const data = presentationData[id];
@@ -550,55 +491,32 @@
             const modal = document.getElementById('presentationModal');
             const titleEl = document.getElementById('modalPresentationTitle');
             const contentArea = document.getElementById('modalContentArea');
-            const footerControls = document.getElementById('modalFooterControls');
 
             titleEl.textContent = data.title;
             contentArea.innerHTML = ''; // Clear prior content
 
+            const iframe = document.createElement('iframe');
+            iframe.className = 'viewer-iframe';
+            iframe.setAttribute('title', data.title);
+
             if (data.type === 'pdf') {
-                footerControls.style.display = 'none';
-                // Inline iframe with #toolbar=0 disables browser download headers
-                const iframe = document.createElement('iframe');
+                // Inline secure PDF view mode hiding main native tools
                 iframe.src = data.src + '#toolbar=0&navpanes=0&scrollbar=0';
-                iframe.style.width = '100%';
-                iframe.style.height = '100%';
-                iframe.style.border = 'none';
-                iframe.setAttribute('title', data.title);
-                contentArea.appendChild(iframe);
-            } else if (data.type === 'slides') {
-                currentActiveDeck = data.images;
-                currentSlideIndex = 0;
-                footerControls.style.display = 'flex';
-
-                const imgEl = document.createElement('img');
-                imgEl.id = 'activeSlideDisplay';
-                imgEl.className = 'slide-image-display';
-                contentArea.appendChild(imgEl);
-
-                updateSlideDisplay();
+            } else if (data.type === 'pptx') {
+                // Use Microsoft Office Web Viewer pointing to the authentic repository files deployed online
+                // Resolves absolute paths dynamically from production context
+                let baseUrl = window.location.origin + window.location.pathname.replace(/\/resources\.html$/, '');
+                if (baseUrl.includes('file://') || baseUrl.includes('localhost') || baseUrl.includes('127.0.0.1')) {
+                    // Provide automatic production fallback for direct local file testing
+                    baseUrl = 'https://roronoahagoromo.github.io/Oluwaseni';
+                }
+                const fullPptxUrl = baseUrl + '/' + data.src;
+                iframe.src = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(fullPptxUrl)}`;
             }
 
+            contentArea.appendChild(iframe);
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
-        }
-
-        function updateSlideDisplay() {
-            if (!currentActiveDeck) return;
-            const imgEl = document.getElementById('activeSlideDisplay');
-            const counterEl = document.getElementById('slideCounterDisplay');
-            const prevBtn = document.getElementById('prevSlideBtn');
-            const nextBtn = document.getElementById('nextSlideBtn');
-
-            if (imgEl) {
-                imgEl.style.animation = 'none';
-                imgEl.offsetHeight; // force reflow for pure CSS transition reset
-                imgEl.style.animation = null;
-                imgEl.src = currentActiveDeck[currentSlideIndex];
-            }
-
-            counterEl.textContent = `Slide ${currentSlideIndex + 1} of ${currentActiveDeck.length}`;
-            prevBtn.disabled = currentSlideIndex === 0;
-            nextBtn.disabled = currentSlideIndex === currentActiveDeck.length - 1;
         }
 
         function closeViewer() {
@@ -606,32 +524,11 @@
             if (modal) modal.style.display = 'none';
             document.body.style.overflow = '';
             document.getElementById('modalContentArea').innerHTML = '';
-            currentActiveDeck = null;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             const closeBtn = document.getElementById('closeViewerBtn');
             if (closeBtn) closeBtn.addEventListener('click', closeViewer);
-
-            const prevBtn = document.getElementById('prevSlideBtn');
-            if (prevBtn) {
-                prevBtn.addEventListener('click', () => {
-                    if (currentSlideIndex > 0) {
-                        currentSlideIndex--;
-                        updateSlideDisplay();
-                    }
-                });
-            }
-
-            const nextBtn = document.getElementById('nextSlideBtn');
-            if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    if (currentActiveDeck && currentSlideIndex < currentActiveDeck.length - 1) {
-                        currentSlideIndex++;
-                        updateSlideDisplay();
-                    }
-                });
-            }
 
             const modal = document.getElementById('presentationModal');
             if (modal) {
@@ -643,16 +540,8 @@
             }
 
             document.addEventListener('keydown', (e) => {
-                if (modal && modal.style.display === 'flex') {
-                    if (e.key === 'Escape') {
-                        closeViewer();
-                    } else if (e.key === 'ArrowLeft' && currentActiveDeck && currentSlideIndex > 0) {
-                        currentSlideIndex--;
-                        updateSlideDisplay();
-                    } else if (e.key === 'ArrowRight' && currentActiveDeck && currentSlideIndex < currentActiveDeck.length - 1) {
-                        currentSlideIndex++;
-                        updateSlideDisplay();
-                    }
+                if (modal && modal.style.display === 'flex' && e.key === 'Escape') {
+                    closeViewer();
                 }
             });
 
