@@ -45,11 +45,10 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#conference" id="conferenceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Conference</a>
             <ul class="dropdown-menu" aria-labelledby="conferenceDropdown">
-              <li><a class="dropdown-item" href="schedule.html"><i class="fa-regular fa-calendar me-2"></i>Schedule</a></li>
               <li><a class="dropdown-item" href="speakers.html"><i class="fa-solid fa-microphone-lines me-2"></i>Speakers</a></li>
               <li><a class="dropdown-item" href="resources.html"><i class="fa-solid fa-file-powerpoint me-2"></i>Resources</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="register.html"><i class="fa-solid fa-ticket me-2"></i>Registration</a></li>
+              <li><a class="dropdown-item" href="register.html"><i class="fa-solid fa-ticket me-2"></i>Conference Archive</a></li>
             </ul>
           </li>
           <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
@@ -58,7 +57,7 @@
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
         <div class="d-flex ms-lg-3">
-          <a href="register.html" class="btn btn-primary text-white">Register Now</a>
+          <a href="register.html" class="btn btn-primary text-white navbar-archive-btn">Conference Archive</a>
         </div>
       </div>
     </div>
@@ -70,18 +69,26 @@
     <div class="container py-5 position-relative z-index-2">
       <div class="row g-5 align-items-center">
         <div class="col-lg-7" data-aos="fade-right">
-          <div class="hero-badge mb-3 bg-white shadow-sm anniversary-badge" data-aos="fade-down" data-aos-delay="200">
-            <span class="dot"></span>
-            Our 17th Annual Gathering
-          </div>
-          <h2 class="display-3 fw-black mb-4">Connect. Cultivate. <br><span class="text-gradient">Belong.</span></h2>
-          <p class="lead text-muted mb-5" style="max-width: 550px;">
-            Join us for Indiana's premier gathering of tech visionaries. A full day of high-impact keynotes, tactical
-            workshops, and networking designed for the modern professional.
-          </p>
-          <div class="d-flex flex-wrap gap-3 hero-buttons">
-            <a href="register.html" class="btn btn-primary btn-lg px-5 shadow-lg hero-btn">Register Now</a>
-            <a href="schedule.html" class="btn btn-outline-primary btn-lg px-5 hero-btn">View Schedule</a>
+          <div class="conference-hero-panel" data-aos="fade-up" data-aos-delay="200">
+            <div class="hero-badge mb-3 bg-white shadow-sm anniversary-badge">
+              <span class="dot"></span>
+              2026 Conference Archive
+            </div>
+            <p class="conference-hero-kicker text-uppercase fw-bold mb-3">Working in Technology</p>
+            <h2 class="display-3 fw-black mb-4 conference-hero-title">The 2026 event is complete.<br><span class="text-gradient">Relive the highlights.</span></h2>
+            <p class="lead text-muted mb-4 conference-hero-copy">
+              Browse the photo gallery, presentation materials, and session details from a full day of connection,
+              learning, and community.
+            </p>
+            <div class="conference-hero-meta mb-4">
+              <div class="conference-meta-item"><i class="fa-solid fa-camera-retro"></i><span>Gallery available</span></div>
+              <div class="conference-meta-item"><i class="fa-solid fa-file-powerpoint"></i><span>Resources posted</span></div>
+              <div class="conference-meta-item"><i class="fa-solid fa-calendar-check"></i><span>April 10, 2026</span></div>
+            </div>
+            <div class="d-flex flex-wrap gap-3 hero-buttons">
+              <a href="register.html" class="btn btn-primary btn-lg px-5 shadow-lg hero-btn">View Archive</a>
+              <a href="gallery.html" class="btn btn-outline-primary btn-lg px-5 hero-btn">See Highlights</a>
+            </div>
           </div>
         </div>
 
@@ -99,10 +106,10 @@
                     <div class="flex-grow-1">
                       <small class="text-primary fw-bold text-uppercase d-block mb-1"
                         style="font-size: 0.7rem; letter-spacing: 1px;">
-                        <i class="fa-solid fa-star me-1"></i>Date
+                        <i class="fa-solid fa-star me-1"></i>Status
                       </small>
-                      <h5 class="mb-1 fw-bold text-dark">April 10, 2026</h5>
-                      <p class="mb-0 small text-muted lh-sm">Friday, 8:30 AM — 3:30 PM</p>
+                      <h5 class="mb-1 fw-bold text-dark">Conference complete</h5>
+                      <p class="mb-0 small text-muted lh-sm">Held Friday, April 10, 2026</p>
                     </div>
                     <i class="fa-solid fa-calendar-plus text-primary" style="font-size: 1.25rem;"></i>
                   </div>
@@ -254,156 +261,6 @@
   </section>
 
 
-
-  <!-- Conference Section (Welcome) -->
-  <section id="conference" class="hero-section">
-    <!-- Animated Mesh Background -->
-    <div class="hero-mesh-bg"></div>
-
-    <div class="container hero-content">
-      <div class="row align-items-center gy-5 text-center text-lg-start">
-        <div class="col-lg-6 d-flex flex-column align-items-center align-items-lg-start" data-aos="fade-right"
-          data-aos-duration="1000">
-          <div class="hero-badge">
-            <span class="dot"></span>
-            2026 Conference Registration Open!
-          </div>
-          <h1 class="display-3 mb-4 fw-black" style="font-weight: 800;">
-            Welcome to <span class="text-gradient">Working</span><br>
-            in <span class="text-accent-gradient">Technology</span>
-          </h1>
-          <p class="lead text-secondary mb-5 fw-medium" style="max-width: 90%;">
-            Connect, Educate, Inspire. Join our community of tech professionals and students shaping the future of
-            technology.
-          </p>
-
-          <!-- Clean Event Details -->
-          <div class="d-flex flex-wrap align-items-center gap-4 mb-5" data-aos="fade-up" data-aos-delay="400">
-            <!-- Date -->
-            <a href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0APRODID:-//WWiT%20Conference//EN%0ABEGIN:VEVENT%0AUID:wwit-conference-2026@wwit.org%0ADTSTAMP:20260410T083000Z%0ADTSTART:20260410T133000Z%0ADTEND:20260410T203000Z%0ASUMMARY:Welcome%20to%20Working%20in%20Technology%20Conference%0ADESCRIPTION:Join%20us%20for%20Indiana's%20premier%20gathering%20of%20tech%20visionaries.%20A%20full%20day%20of%20high-impact%20keynotes%2C%20tactical%20breakout%20sessions%2C%20networking%2C%20and%20lightning%20talks.%0ALOCATION:6100%20Sam%20Jones%20Expy%2C%20Indianapolis%2C%20IN%2046241%0ASTATUS:CONFIRMED%0AEND:VEVENT%0AEND:VCALENDAR" class="text-decoration-none d-block" title="Add to Calendar" style="transition: opacity 0.2s;">
-              <div class="d-flex align-items-center gap-3" style="cursor: pointer;">
-                <i class="fa-regular fa-calendar-days text-primary" style="font-size: 1.5rem;"></i>
-                <div>
-                  <small class="text-muted text-uppercase d-block mb-1"
-                    style="font-size: 0.7rem; font-weight: 600; letter-spacing: 1px;">Date</small>
-                  <span class="text-dark fw-bold d-block" style="font-size: 1.05rem;">Friday, April 10, 2026</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- Divider -->
-            <div style="width: 1px; height: 40px; background: #e2e8f0;"></div>
-
-            <!-- Location -->
-            <a href="https://www.google.com/maps/search/?api=1&query=6100+Sam+Jones+Expy+Indianapolis+IN+46241" target="_blank" class="text-decoration-none d-block" style="transition: opacity 0.2s;">
-              <div class="d-flex align-items-center gap-3" style="cursor: pointer;">
-                <i class="fa-solid fa-location-dot text-primary" style="font-size: 1.5rem;"></i>
-                <div>
-                  <small class="text-muted text-uppercase d-block mb-1"
-                    style="font-size: 0.7rem; font-weight: 600; letter-spacing: 1px;">Location</small>
-                  <span class="text-dark fw-bold d-block" style="font-size: 1.05rem;">Infosys Lab, Indianapolis</span>
-                  <span class="text-muted d-block" style="font-size: 0.85rem; text-decoration: underline;">
-                    <i class="fa-solid fa-map-marker-alt me-1"></i>6100 Sam Jones Expy, Indianapolis, IN 46241
-                  </span>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-4">
-            <a href="register.html" class="btn btn-primary text-white btn-hero-premium shadow-lg rounded-pill">Register
-              for 2026</a>
-            <a href="why-attend.html" class="btn btn-hero-ghost">Why attend?</a>
-          </div>
-
-          <!-- Pricing Pills -->
-          <!-- Pricing Pills -->
-          
-          <div class="pricing-info-modern mt-5" data-aos="fade-up" data-aos-delay="600">
-            <div class="pricing-item-modern">
-              <i class="fa-solid fa-briefcase pricing-icon-modern"></i>
-              <div class="pricing-text-modern">
-                <span class="pricing-label-modern">Professional</span>
-                <span class="pricing-value-modern">$80</span>
-              </div>
-            </div>
-            <div class="dash-divider-v3" style="height: 40px; opacity: 0.1;"></div>
-            <div class="pricing-item-modern">
-              <i class="fa-solid fa-graduation-cap pricing-icon-modern accent"></i>
-              <div class="pricing-text-modern">
-                <span class="pricing-label-modern">Student</span>
-                <span class="pricing-value-modern">$40</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-6 position-relative d-none d-lg-block" data-aos="fade-left" data-aos-duration="1200">
-          <div class="hero-visual-wrapper">
-            <div class="hero-circle-deco deco-1 d-none d-lg-block"></div>
-            <div class="hero-circle-deco deco-2 d-none d-lg-block"></div>
-
-            <!-- Floating Glass Cards -->
-            <!-- Mini Floating Widgets -->
-            <div class="floating-mini-icon text-primary d-none d-lg-block"
-              style="top: 20%; left: 10%; animation-delay: 0.5s;">
-              <i class="fa-solid fa-code"></i>
-            </div>
-            <div class="floating-mini-icon text-warning d-none d-lg-block"
-              style="bottom: 25%; right: 15%; animation-delay: 1.5s;">
-              <i class="fa-solid fa-cloud"></i>
-            </div>
-            <div class="floating-mini-icon text-success d-none d-lg-block"
-              style="top: 15%; right: 30%; animation-delay: 2.5s;">
-              <i class="fa-solid fa-chart-line"></i>
-            </div>
-
-            <!-- Main Center Card -->
-            <a href="register.html" class="glass-card-float card-main d-none d-lg-block text-decoration-none"
-              style="cursor: pointer;">
-              <div class="icon-circle">
-                <i class="fa-solid fa-bolt"></i>
-              </div>
-              <h4 class="mb-2">Build your network</h4>
-              <p class="text-muted small mb-0 fw-semibold">Expand your reach!</p>
-            </a>
-
-            <!-- Top Right Card -->
-            <a href="schedule.html" class="glass-card-float card-top-right p-3 d-none d-lg-block text-decoration-none"
-              style="cursor: pointer;">
-              <div class="d-flex align-items-center gap-3">
-                <div
-                  class="bg-warning bg-opacity-10 text-warning rounded-3 d-flex align-items-center justify-content-center"
-                  style="width: 45px; height: 45px;">
-                  <i class="fa-solid fa-lightbulb"></i>
-                </div>
-                <div>
-                  <h6 class="mb-0">Inspiring Keynotes</h6>
-                  <small class="text-muted">Visionary Talks</small>
-                </div>
-              </div>
-            </a>
-
-            <!-- Bottom Left Card -->
-            <a href="schedule.html" class="glass-card-float card-bottom-left p-3 d-none d-lg-block text-decoration-none"
-              style="cursor: pointer;">
-              <div class="d-flex align-items-center gap-3">
-                <div
-                  class="bg-success bg-opacity-10 text-success rounded-3 d-flex align-items-center justify-content-center"
-                  style="width: 45px; height: 45px;">
-                  <i class="fa-solid fa-laptop-code"></i>
-                </div>
-                <div>
-                  <h6 class="mb-0">Hands-on Workshops</h6>
-                  <small class="text-muted">Skill Building</small>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Get Involved -->
   <section id="getinvolved" class="py-5 bg-light">
@@ -1018,7 +875,7 @@
   </section>
   </section>
 
-  <!-- Registration CTA Banner -->
+  <!-- Archive CTA Banner -->
   <section class="cta-section-wrapper">
     <div class="container" data-aos="zoom-in">
       <div class="cta-card-modern">
@@ -1028,14 +885,14 @@
 
         <div class="row align-items-center position-relative z-2">
           <div class="col-lg-8 text-center text-lg-start mb-4 mb-lg-0">
-            <h2 class="display-5 text-white fw-bold mb-3">Ready to Secure Your Spot?</h2>
+            <h2 class="display-5 text-white fw-bold mb-3">Explore the 2026 archive</h2>
             <p class="text-white opacity-90 lead mb-0" style="max-width: 600px;">
-              Don't miss out on Early Bird pricing using our streamlined registration process.
+              Registration is closed. Browse the gallery and speaker resources from this year's conference.
             </p>
           </div>
           <div class="col-lg-4 text-center text-lg-end">
-            <a href="register.html" class="btn btn-cta-light btn-lg px-5 rounded-pill">
-              Register Now <i class="fa-solid fa-arrow-right ms-2"></i>
+            <a href="gallery.html" class="btn btn-cta-light btn-lg px-5 rounded-pill">
+              View Gallery <i class="fa-solid fa-arrow-right ms-2"></i>
             </a>
           </div>
         </div>
